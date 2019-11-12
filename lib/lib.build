@@ -78,6 +78,7 @@
         <include name="set.n" />
         <include name="stack.n" />
         <include name="tree.n" />
+		<include name="csinterop.n" />
       </sources>
     </ncc>
   </target>

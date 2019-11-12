@@ -136,6 +136,9 @@
     <Compile Include="Nemerle.Completion2\CodeModel\TokenFinder.n" />
     <Compile Include="Nemerle.Completion2\CodeModel\XmlDocInfo.n" />
     <Compile Include="Nemerle.Completion2\CodeModel\XmlDocReader.n" />
+	<Compile Include="Nemerle.Completion2\CodeModel\Locator\ObjectLocator.n" />
+	<Compile Include="Nemerle.Completion2\CodeModel\Locator\DefinitionLocator.n" />
+	<Compile Include="Nemerle.Completion2\CodeModel\Locator\ExprLocator.n" />
     <Compile Include="Nemerle.Completion2\CompiledUnitAstBrowser.n" />
     <Compile Include="Nemerle.Completion2\CompilerConcreteDefinitions\Factories\Factories.n" />
     <Compile Include="Nemerle.Completion2\CompilerConcreteDefinitions\IntelliSenseModeLibraryReferenceManager.n" />

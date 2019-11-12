@@ -1,0 +1,167 @@
+namespace Nemerle.CSharp {
+	public class Interop {
+		////////////////////////////////////////////////////
+		// Func with args & result
+		////////////////////////////////////////////////////
+		
+		static public ToNemerleFunc[R](this csFunc: System.Func[R]) : void -> R {
+			def nemerleFunc() : R {
+				csFunc.Invoke();
+			}
+			
+			nemerleFunc
+		}
+		
+		static public ToNemerleFunc[T1, R](this csFunc: System.Func[T1, R]) : T1 -> R {
+			def nemerleFunc(t1: T1) : R {
+				csFunc.Invoke(t1);
+			}
+			
+			nemerleFunc
+		}
+		
+		static public ToNemerleFunc[T1, T2, R](this csFunc: System.Func[T1, T2, R]) : T1 * T2 -> R {
+			def nemerleFunc(t1: T1, t2: T2) : R {
+				csFunc.Invoke(t1, t2);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, R](this csFunc: System.Func[T1, T2, T3, R]) : T1 * T2 * T3 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3) : R {
+				csFunc.Invoke(t1, t2, t3);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, T4, R](this csFunc: System.Func[T1, T2, T3, T4, R]) : T1 * T2 * T3 * T4 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4) : R {
+				csFunc.Invoke(t1, t2, t3, t4);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, T4, T5, R](this csFunc: System.Func[T1, T2, T3, T4, T5, R]) : T1 * T2 * T3 * T4 * T5 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5) : R {
+				csFunc.Invoke(t1, t2, t3, t4, t5);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, T4, T5, T6, R](this csFunc: System.Func[T1, T2, T3, T4, T5, T6, R]) : T1 * T2 * T3 * T4 * T5 * T6 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6) : R {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, T4, T5, T6, T7, R](this csFunc: System.Func[T1, T2, T3, T4, T5, T6, T7, R]) : T1 * T2 * T3 * T4 * T5 * T6 * T7 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7) : R {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6, t7);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleFunc[T1, T2, T3, T4, T5, T6, T7, T8, R](this csFunc: System.Func[T1, T2, T3, T4, T5, T6, T7, T8, R]) : T1 * T2 * T3 * T4 * T5 * T6 * T7 * T8 -> R {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8) : R {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6, t7, t8);
+			}
+			
+			nemerleFunc
+		}
+		
+		////////////////////////////////////////////////////
+		// Func with args & no result
+		////////////////////////////////////////////////////
+		
+		static public ToNemerleAction(this csFunc: System.Action) : void -> void {
+			def nemerleFunc() : void {
+				csFunc.Invoke();
+			}
+			
+			nemerleFunc
+		}
+		
+		static public ToNemerleAction[T1](this csFunc: System.Action[T1]) : T1 -> void {
+			def nemerleFunc(t1: T1) : void {
+				csFunc.Invoke(t1);
+			}
+			
+			nemerleFunc
+		}
+		
+		static public ToNemerleAction[T1, T2](this csFunc: System.Action[T1, T2]) : T1 * T2 -> void {
+			def nemerleFunc(t1: T1, t2: T2) : void {
+				csFunc.Invoke(t1, t2);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3](this csFunc: System.Action[T1, T2, T3]) : T1 * T2 * T3 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3) : void {
+				csFunc.Invoke(t1, t2, t3);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3, T4](this csFunc: System.Action[T1, T2, T3, T4]) : T1 * T2 * T3 * T4 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4) : void {
+				csFunc.Invoke(t1, t2, t3, t4);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3, T4, T5](this csFunc: System.Action[T1, T2, T3, T4, T5]) : T1 * T2 * T3 * T4 * T5 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5) : void {
+				csFunc.Invoke(t1, t2, t3, t4, t5);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3, T4, T5, T6](this csFunc: System.Action[T1, T2, T3, T4, T5, T6]) : T1 * T2 * T3 * T4 * T5 * T6 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6) : void {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3, T4, T5, T6, T7](this csFunc: System.Action[T1, T2, T3, T4, T5, T6, T7]) : T1 * T2 * T3 * T4 * T5 * T6 * T7 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7) : void {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6, t7);
+			}
+			
+			nemerleFunc
+		}
+	
+		static public ToNemerleAction[T1, T2, T3, T4, T5, T6, T7, T8](this csFunc: System.Action[T1, T2, T3, T4, T5, T6, T7, T8]) : T1 * T2 * T3 * T4 * T5 * T6 * T7 * T8 -> void {
+			def nemerleFunc(t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8) : void {
+				csFunc.Invoke(t1, t2, t3, t4, t5, t6, t7, t8);
+			}
+			
+			nemerleFunc
+		}
+		
+		////////////////////////////////////////////////////
+		// List helpers
+		////////////////////////////////////////////////////
+		
+		static public new_list[T]() : list[T] {
+			[]
+		}
+		
+		static public new_list[T](head : T) : list[T] {
+			[head]
+		}
+	}
+}

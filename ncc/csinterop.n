@@ -1,0 +1,5 @@
+namespace Nemerle.Compiler {
+	public class Interop {
+		static public EmptyFuncBody : Nemerle.Compiler.Parsetree.PExpr.Literal = <[ () ]>;
+	}
+}

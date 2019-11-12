@@ -13,7 +13,7 @@ using NC = Nemerle.Collections;
 
 namespace Nemerle.Completion2
 {
-  class ExprFinder : IExprWalkerCallback
+  public class ExprFinder : IExprWalkerCallback
   {
     mutable _line         : int;
     mutable _col          : int;

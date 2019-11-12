@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+using Nemerle.Assertions;
+using Nemerle.Collections;
+using Nemerle.Compiler;
+using Nemerle.Compiler.Token;
+using Nemerle.Compiler.Utils;
+using Nemerle.Compiler.Parsetree;
+using Nemerle.Compiler.Typedtree;
+using Nemerle.Utility;
+using Nemerle.Imperative;
+
+using SCG = System.Collections.Generic;
+
+namespace Nemerle.Completion2
+{
+    public class DefinitionLocator
+    {
+        static public GetDefinitionInsideType(typeDecl : Decl.Type, fileIndex : int, line : int, column : int) : list[GotoInfo]
+        {
+            def gotoMap = typeDecl?.Ast?.TypeBuilder?.UserData["GoToInfoMap"] :> Hashtable[Location, Location];
+            
+            when (gotoMap != null)
+            {
+                def found = gotoMap.KeyValuePairs.Filter((k, _) => k.Contains(fileIndex, line, column));
+                
+                match (found)
+                {
+                | [(_, value)] => return [GotoInfo(value)];
+                | _ :: _ => 
+                    def ary = found.NToArray();
+                    def i = ary.IndexOfMostNested((k, _) => k, line, column);
+                    def (_k, value) = ary[i];
+                    return [GotoInfo(value)];
+                    
+                | _ => ()
+                }
+            }
+            
+            def (_, _, tObj) = ObjectLocator.FindObject(typeDecl, fileIndex, line, column);
+
+            def getTypeGotoInfo(tv : TypeVar) 
+            {
+            | mType is FixedType =>
+                match (mType)
+                {
+                | FixedType.Class(ty is TypeBuilder, _) => ty.AstParts.Map(p => GotoInfo(p.name.Location));
+                | FixedType.Class(ty, _)                => [GotoInfo(ty)]
+                | _                                 => []
+                }
+            | _                                   => []
+            }
+
+            match (tObj)
+            {
+                | me is TExpr.MacroEnvelope         => [GotoInfo(me)]
+                | lv is LocalValue                  => [GotoInfo(lv)]
+                | tc is TExpr.ImplicitValueTypeCtor => getTypeGotoInfo(tc.ty)
+                | tv is TypeVar                       => getTypeGotoInfo(tv)
+                | mb is MethodBuilder               =>
+                if (mb.Name == ".ctor" && mb.Ast.name.Location.IsGenerated)
+                    mb.DeclaringType.AstParts.Map(GotoInfo);
+                else
+                    [GotoInfo(mb)]
+
+                // This code should be used instead of the code above.
+                // | mb is MethodBuilder when mb.Name == ".ctor" && mb.Ast.name.Location.IsGenerated with tb = mb.DeclaringType
+                | tb is TypeBuilder                 => tb.AstParts.Map(GotoInfo);
+                | fh is Typedtree.TFunHeader        => [GotoInfo(fh)]
+                | fp is Typedtree.TParameter          => [GotoInfo(fp)]
+                | m  is IMember                     => [GotoInfo(m)]
+                | p  is Pattern.Enum                => [GotoInfo(p.fld)]
+                | _                                 => []
+            }
+        }
+    }
+}

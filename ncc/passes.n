@@ -310,7 +310,7 @@ namespace Nemerle.Compiler
     internal Message_emitted_hints : Hashtable [string, int]               { get; private set; }
     internal Typer_BetterTypeCache : Hashtable [TypeInfo * TypeInfo, bool] { get; private set; }
 
-    protected internal mutable Message_output : System.IO.TextWriter;
+    protected internal virtual Message_output : System.IO.TextWriter { get; set; }
 
     protected internal mutable _afterUsingDirectiveParse
       : Location * list [string] * list [Location] * string * Location
